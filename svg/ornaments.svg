@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- defs — все символы, на которые ссылаются через <use> -->
+  <defs>
+
+    <!-- ── Угловой орнамент (используется для frame страниц) ── -->
+    <symbol id="corner-ornament" viewBox="0 0 40 40">
+      <path d="M2,38 L2,8 Q2,2 8,2 L38,2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M2,20 Q14,8 26,2" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2,3"/>
+      <circle cx="2"  cy="2"  r="2.5" fill="currentColor"/>
+      <circle cx="10" cy="2"  r="1.2" fill="currentColor" opacity="0.6"/>
+      <circle cx="2"  cy="10" r="1.2" fill="currentColor" opacity="0.6"/>
+    </symbol>
+
+    <!-- ── Горизонтальный разделитель ── -->
+    <symbol id="divider-ornament" viewBox="0 0 300 20">
+      <line x1="0"   y1="10" x2="110" y2="10" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+      <line x1="190" y1="10" x2="300" y2="10" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+      <!-- Центральный элемент -->
+      <g transform="translate(150,10)">
+        <path d="M-35,0 Q-20,-6 0,0 Q20,6 35,0" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M-35,0 Q-20,6 0,0 Q20,-6 35,0" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="0" cy="0" r="3" fill="currentColor"/>
+        <circle cx="-35" cy="0" r="1.5" fill="currentColor" opacity="0.6"/>
+        <circle cx="35"  cy="0" r="1.5" fill="currentColor" opacity="0.6"/>
+      </g>
+    </symbol>
+
+    <!-- ── Большой заголовочный орнамент (hero/section) ── -->
+    <symbol id="heading-ornament" viewBox="0 0 400 60">
+      <!-- Линии -->
+      <line x1="0"   y1="30" x2="140" y2="30" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <line x1="260" y1="30" x2="400" y2="30" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <!-- Левый завиток -->
+      <path d="M140,30 Q155,18 165,30 Q175,42 160,42 Q148,42 148,30 Q148,20 158,18" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <!-- Правый завиток (зеркальный) -->
+      <path d="M260,30 Q245,18 235,30 Q225,42 240,42 Q252,42 252,30 Q252,20 242,18" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <!-- Центральный ромб -->
+      <path d="M200,16 L216,30 L200,44 L184,30 Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="200" cy="30" r="4" fill="currentColor"/>
+      <!-- Малые точки -->
+      <circle cx="180" cy="30" r="1.5" fill="currentColor" opacity="0.5"/>
+      <circle cx="220" cy="30" r="1.5" fill="currentColor" opacity="0.5"/>
+    </symbol>
+
+    <!-- ── Виньетка (финал, колофон) ── -->
+    <symbol id="vignette-ornament" viewBox="0 0 500 80">
+      <line x1="0"   y1="40" x2="180" y2="40" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
+      <line x1="320" y1="40" x2="500" y2="40" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
+      <!-- Большой цветочный мотив по центру -->
+      <g transform="translate(250,40)">
+        <!-- Лепестки -->
+        <ellipse cx="0" cy="-22" rx="5" ry="14" fill="currentColor" opacity="0.3" transform="rotate(0)"/>
+        <ellipse cx="0" cy="-22" rx="5" ry="14" fill="currentColor" opacity="0.3" transform="rotate(45)"/>
+        <ellipse cx="0" cy="-22" rx="5" ry="14" fill="currentColor" opacity="0.3" transform="rotate(90)"/>
+        <ellipse cx="0" cy="-22" rx="5" ry="14" fill="currentColor" opacity="0.3" transform="rotate(135)"/>
+        <ellipse cx="0" cy="-22" rx="5" ry="14" fill="currentColor" opacity="0.3" transform="rotate(180)"/>
+        <ellipse cx="0" cy="-22" rx="5" ry="14" fill="currentColor" opacity="0.3" transform="rotate(225)"/>
+        <ellipse cx="0" cy="-22" rx="5" ry="14" fill="currentColor" opacity="0.3" transform="rotate(270)"/>
+        <ellipse cx="0" cy="-22" rx="5" ry="14" fill="currentColor" opacity="0.3" transform="rotate(315)"/>
+        <!-- Центр -->
+        <circle cx="0" cy="0" r="8" fill="currentColor" opacity="0.5"/>
+        <circle cx="0" cy="0" r="4" fill="currentColor"/>
+      </g>
+      <!-- Боковые мотивы -->
+      <g transform="translate(180,40)" opacity="0.7">
+        <path d="M0,0 Q-12,-12 -24,0 Q-12,12 0,0" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="0"   cy="0" r="2" fill="currentColor"/>
+        <circle cx="-24" cy="0" r="2" fill="currentColor" opacity="0.5"/>
+      </g>
+      <g transform="translate(320,40)" opacity="0.7">
+        <path d="M0,0 Q12,-12 24,0 Q12,12 0,0" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="0"  cy="0" r="2" fill="currentColor"/>
+        <circle cx="24" cy="0" r="2" fill="currentColor" opacity="0.5"/>
+      </g>
+    </symbol>
+
+    <!-- ── Кошель / Калита (иконка счётчика очков) ── -->
+    <symbol id="purse-icon" viewBox="0 0 28 28">
+      <!-- Тело кошеля -->
+      <path d="M7,13 Q5,10 6,7 Q7,4 10,4 L18,4 Q21,4 22,7 Q23,10 21,13 Q22,16 21,20 Q20,25 14,25 Q8,25 7,20 Q6,16 7,13 Z"
+            fill="currentColor" opacity="0.85"/>
+      <!-- Горлышко -->
+      <path d="M10,4 Q11,1 14,1 Q17,1 18,4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Завязка -->
+      <circle cx="14" cy="4" r="2" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <!-- Крест-монетка -->
+      <line x1="14" y1="14" x2="14" y2="20" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+      <line x1="11" y1="17" x2="17" y2="17" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+    </symbol>
+
+    <!-- ── Иконка «перо» (для hero) ── -->
+    <symbol id="quill-icon" viewBox="0 0 60 60">
+      <path d="M55,5 Q30,5 15,30 Q10,40 12,50 L16,46 Q18,36 28,26 Q15,35 14,48 Q20,45 25,38 Q38,20 55,5 Z"
+            fill="currentColor"/>
+      <path d="M12,50 L8,55" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- ── Декоративная рамка для диплома ── -->
+    <symbol id="diploma-frame" viewBox="0 0 560 380">
+      <!-- Внешняя рамка -->
+      <rect x="4" y="4" width="552" height="372" fill="none" stroke="currentColor" stroke-width="2" rx="8"/>
+      <!-- Внутренняя рамка -->
+      <rect x="14" y="14" width="532" height="352" fill="none" stroke="currentColor" stroke-width="0.8" rx="6" stroke-dasharray="4,3" opacity="0.6"/>
+      <!-- Угловые украшения -->
+      <g opacity="0.8">
+        <!-- TL -->
+        <path d="M14,40 L14,20 Q14,14 20,14 L40,14" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="14" cy="14" r="4" fill="currentColor"/>
+        <!-- TR -->
+        <path d="M546,40 L546,20 Q546,14 540,14 L520,14" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="546" cy="14" r="4" fill="currentColor"/>
+        <!-- BL -->
+        <path d="M14,340 L14,360 Q14,366 20,366 L40,366" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="14" cy="366" r="4" fill="currentColor"/>
+        <!-- BR -->
+        <path d="M546,340 L546,360 Q546,366 540,366 L520,366" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="546" cy="366" r="4" fill="currentColor"/>
+      </g>
+      <!-- Центральный верхний орнамент -->
+      <g transform="translate(280,14)" opacity="0.7">
+        <circle cx="0" cy="0" r="5" fill="currentColor"/>
+        <line x1="-40" y1="0" x2="-8" y2="0" stroke="currentColor" stroke-width="1"/>
+        <line x1="8"   y1="0" x2="40" y2="0" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </symbol>
+
+    <!-- ── Звезда/звание ── -->
+    <symbol id="star-medal" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="36" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="40" cy="40" r="28" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+      <!-- Звезда -->
+      <polygon points="40,12 46,32 68,32 51,44 57,64 40,52 23,64 29,44 12,32 34,32"
+               fill="currentColor" opacity="0.9"/>
+    </symbol>
+
+  </defs>
+</svg>

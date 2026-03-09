@@ -1,0 +1,283 @@
+/**
+ * animations.css — все keyframe-анимации и переходы
+ * ==================================================
+ */
+
+/* ─── Живое перо — анимация SVG-заголовка ────────────────────────────────── */
+@keyframes penDraw {
+  from { stroke-dashoffset: var(--dash-len, 1000); }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Текст появляется как будто его пишут */
+.hero-title-svg text,
+.hero-title-svg path {
+  stroke-dasharray: var(--dash-len, 1000);
+  stroke-dashoffset: var(--dash-len, 1000);
+  animation: penDraw 2.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ─── Появление при скролле (Intersection Observer) ─────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Задержки для каскадного появления */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.35s; }
+.delay-4 { transition-delay: 0.5s; }
+.delay-5 { transition-delay: 0.65s; }
+
+/* ─── Hero анимации ─────────────────────────────────────────────────────── */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.08); }
+}
+
+.hero-dates-anim {
+  animation: heroFadeUp 1s ease 0.3s both;
+}
+
+.hero-title-anim {
+  animation: heroFadeUp 1s ease 0.6s both;
+}
+
+.hero-lead-anim {
+  animation: heroFadeUp 1s ease 1s both;
+}
+
+.hero-cta-anim {
+  animation: heroFadeUp 1s ease 1.4s both;
+}
+
+/* ─── Мерцание точек на карте ───────────────────────────────────────────── */
+@keyframes mapPulse {
+  0%, 100% { r: 6px; opacity: 0.9; }
+  50%       { r: 9px; opacity: 0.6; }
+}
+
+@keyframes mapRing {
+  0%   { r: 6px; opacity: 0.7; }
+  100% { r: 20px; opacity: 0; }
+}
+
+.map-point-dot {
+  animation: mapPulse 2.5s ease-in-out infinite;
+}
+
+.map-point-ring {
+  animation: mapRing 2.5s ease-out infinite;
+}
+
+/* ─── Портрет — золотое свечение при наведении ──────────────────────────── */
+.portrait-frame {
+  transition: filter var(--transition-mid);
+}
+
+.portrait-wrap:hover .portrait-frame {
+  filter: drop-shadow(0 0 16px rgba(201,162,39,0.8));
+}
+
+@keyframes portraitSignature {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.portrait-signature {
+  opacity: 0;
+  transition: opacity var(--transition-mid);
+  animation: none;
+}
+
+.portrait-wrap:hover .portrait-signature {
+  opacity: 1;
+}
+
+/* ─── Вкладки — перелистывание ──────────────────────────────────────────── */
+.tab-panel {
+  display: none;
+  opacity: 0;
+  transform: rotateY(-6deg) translateX(-16px);
+  transition: opacity 0.3s ease, transform 0.4s ease;
+  transform-origin: left center;
+}
+
+.tab-panel.active {
+  display: block;
+  opacity: 0;
+}
+
+.tab-panel.animate-in {
+  opacity: 1;
+  transform: rotateY(0deg) translateX(0);
+}
+
+/* ─── Карточка события — разворот как страница ──────────────────────────── */
+@keyframes cardOpen {
+  from {
+    max-height: 0;
+    opacity: 0;
+    transform: rotateX(-8deg);
+  }
+  to {
+    max-height: 400px;
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes cardClose {
+  from {
+    max-height: 400px;
+    opacity: 1;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+.event-detail {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform-origin: top;
+  transition:
+    max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.35s ease,
+    padding 0.35s ease;
+}
+
+.event-detail.open {
+  max-height: 400px;
+  opacity: 1;
+}
+
+/* ─── Счётчик очков — подпрыгивание ─────────────────────────────────────── */
+@keyframes scoreBump {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.4); color: var(--clr-gold-light); }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* ─── Разворачивающийся свиток CTA ──────────────────────────────────────── */
+@keyframes scrollUnfurl {
+  0%   { transform: scaleY(0.3) scaleX(0.8); opacity: 0; }
+  60%  { transform: scaleY(1.05) scaleX(1.02); }
+  100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+}
+
+.scroll-unfurl {
+  animation: scrollUnfurl 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─── Финальный диплом — появление ─────────────────────────────────────── */
+@keyframes diplomaAppear {
+  0%   { opacity: 0; transform: scale(0.8) rotateZ(-2deg); }
+  70%  { transform: scale(1.02) rotateZ(0.5deg); }
+  100% { opacity: 1; transform: scale(1) rotateZ(0deg); }
+}
+
+.diploma-appear {
+  animation: diplomaAppear 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─── Параллакс-декор (управляется через JS) ─────────────────────────────── */
+.parallax-layer {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* ─── Блеск золота ──────────────────────────────────────────────────────── */
+@keyframes goldShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--clr-gold) 0%,
+    var(--clr-gold-light) 40%,
+    var(--clr-gold) 50%,
+    var(--clr-gold-light) 60%,
+    var(--clr-gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 4s linear infinite;
+}
+
+/* ─── Орнамент-разделитель — нарисовать линией ──────────────────────────── */
+@keyframes ornamentDraw {
+  from { stroke-dashoffset: 300; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.ornament-line {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+}
+
+.ornament-line.drawn {
+  animation: ornamentDraw 1.2s ease forwards;
+}
+
+/* ─── Индикатор загрузки (резервный) ────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Ответ квиза — вспышка ─────────────────────────────────────────────── */
+@keyframes answerCorrect {
+  0%   { background: transparent; }
+  30%  { background: rgba(0,160,80,0.2); }
+  100% { background: transparent; }
+}
+
+@keyframes answerWrong {
+  0%   { background: transparent; }
+  30%  { background: rgba(180,20,20,0.2); }
+  100% { background: transparent; }
+}
+
+.quiz-option.correct  { animation: answerCorrect 0.8s ease both; }
+.quiz-option.wrong    { animation: answerWrong   0.8s ease both; }

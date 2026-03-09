@@ -1,0 +1,204 @@
+/**
+ * main.css — CSS-переменные, сброс стилей, типографика
+ * =====================================================
+ */
+
+/* ─── Google Fonts импорт (дублируется из <link> для надёжности) ──────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+/* ─── CSS-переменные ──────────────────────────────────────────────────────── */
+:root {
+  /* Цвета */
+  --clr-parchment:       #f5e9c8;
+  --clr-parchment-mid:   #edd9a3;
+  --clr-parchment-dark:  #d9c080;
+  --clr-brown-deep:      #1e0f08;
+  --clr-brown:           #5c2e0a;
+  --clr-brown-light:     #8b5e3c;
+  --clr-ochre:           #b8790a;
+  --clr-gold:            #c9a227;
+  --clr-gold-light:      #e8c84a;
+  --clr-gold-pale:       #f5e199;
+  --clr-crimson:         #7a1515;
+  --clr-crimson-light:   #a03030;
+  --clr-navy:            #1a2744;
+  --clr-ink:             #140a04;
+  --clr-shadow:          rgba(30, 15, 8, 0.35);
+
+  /* Шрифты */
+  --font-heading:  'Cinzel', 'Times New Roman', serif;
+  --font-body:     'EB Garamond', Georgia, serif;
+
+  /* Размеры */
+  --fz-xs:   0.75rem;   /* 12px */
+  --fz-sm:   0.875rem;  /* 14px */
+  --fz-base: 1.0625rem; /* 17px */
+  --fz-md:   1.25rem;   /* 20px */
+  --fz-lg:   1.625rem;  /* 26px */
+  --fz-xl:   2.25rem;   /* 36px */
+  --fz-2xl:  3rem;      /* 48px */
+  --fz-3xl:  4rem;      /* 64px */
+  --fz-4xl:  5.5rem;    /* 88px */
+
+  /* Отступы */
+  --sp-xs:   0.25rem;
+  --sp-sm:   0.5rem;
+  --sp-md:   1rem;
+  --sp-lg:   2rem;
+  --sp-xl:   4rem;
+  --sp-2xl:  8rem;
+
+  /* Радиус, тени */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  16px;
+  --shadow-sm:  0 2px 8px var(--clr-shadow);
+  --shadow-md:  0 4px 24px var(--clr-shadow);
+  --shadow-lg:  0 8px 48px var(--clr-shadow);
+
+  /* Переходы */
+  --transition-fast:   0.18s ease;
+  --transition-mid:    0.35s ease;
+  --transition-slow:   0.65s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Z-индексы */
+  --z-base:     1;
+  --z-overlay:  10;
+  --z-header:   100;
+  --z-tooltip:  200;
+  --z-modal:    300;
+}
+
+/* ─── Сброс стилей ────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  /* Предотвращаем горизонтальный скролл */
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fz-base);
+  line-height: 1.75;
+  color: var(--clr-brown-deep);
+  background-color: var(--clr-parchment);
+  overflow-x: hidden;
+  /* Пергаментная текстура через CSS */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='multiply'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul, ol { list-style: none; }
+
+a {
+  color: var(--clr-crimson);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover { color: var(--clr-gold); }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ─── Типографика ─────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  color: var(--clr-brown-deep);
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(var(--fz-2xl), 6vw, var(--fz-4xl)); letter-spacing: 0.08em; }
+h2 { font-size: clamp(var(--fz-xl), 4vw, var(--fz-3xl)); letter-spacing: 0.05em; }
+h3 { font-size: clamp(var(--fz-lg), 3vw, var(--fz-2xl)); }
+h4 { font-size: var(--fz-md); letter-spacing: 0.03em; }
+
+p { margin-bottom: var(--sp-md); }
+p:last-child { margin-bottom: 0; }
+
+em { font-style: italic; color: var(--clr-crimson); }
+strong { font-weight: 600; color: var(--clr-brown); }
+
+/* Декоративный dropcap для первых абзацев биографий */
+.bio-text p:first-of-type::first-letter {
+  font-family: var(--font-heading);
+  font-size: 3.5em;
+  font-weight: 900;
+  color: var(--clr-crimson);
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.1em;
+  margin-top: 0.05em;
+  text-shadow: 2px 2px 0 var(--clr-gold);
+}
+
+/* ─── Утилиты ─────────────────────────────────────────────────────────────── */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.text-center { text-align: center; }
+.text-gold   { color: var(--clr-gold); }
+.text-crimson { color: var(--clr-crimson); }
+
+/* Золотой разделитель */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  margin: var(--sp-lg) 0;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--clr-gold), transparent);
+}
+.divider-icon {
+  color: var(--clr-gold);
+  font-size: var(--fz-md);
+  font-family: var(--font-heading);
+  letter-spacing: 0.2em;
+}
+
+/* Скролл-бар в стиле пергамента */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--clr-parchment-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--clr-brown-light);
+  border-radius: 5px;
+  border: 2px solid var(--clr-parchment-dark);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--clr-ochre); }
+
+/* ─── Prefers-reduced-motion ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

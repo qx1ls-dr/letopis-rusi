@@ -1,0 +1,559 @@
+/**
+ * components.css — таймлайн, квиз, карточки, вкладки, портреты
+ * =============================================================
+ */
+
+/* ─── Портрет ────────────────────────────────────────────────────────────── */
+.person-scroll {
+  align-items: stretch !important;
+}
+
+.page-left {
+  padding: 0 !important;
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
+  background: none;
+  position: relative;
+  top: 0 !important;
+  cursor: default;
+}
+
+.page-left::before {
+  display: none;
+}
+
+.portrait-fill {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+.portrait-signature {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--fz-sm);
+  color: var(--clr-crimson);
+  margin-top: var(--sp-sm);
+  opacity: 0;
+  transition: opacity var(--transition-mid);
+}
+
+.portrait-wrap:hover .portrait-signature { opacity: 1; }
+
+/* Угловые украшения «страницы» */
+.page-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: var(--clr-gold);
+  stroke-width: 1.5;
+  opacity: 0.5;
+}
+
+.page-corner--tl { top: 12px; left: 12px; }
+.page-corner--tr { top: 12px; right: 12px; transform: scaleX(-1); }
+.page-corner--bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+.page-corner--br { bottom: 12px; right: 12px; transform: scale(-1); }
+
+/* ─── Вкладки ────────────────────────────────────────────────────────────── */
+.tabs {
+  margin-bottom: var(--sp-lg);
+}
+
+.tab-list {
+  display: flex;
+  border-bottom: 2px solid var(--clr-parchment-dark);
+  gap: var(--sp-xs);
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  font-family: var(--font-heading);
+  font-size: var(--fz-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-brown-light);
+  padding: var(--sp-sm) var(--sp-md);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all var(--transition-fast);
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--clr-brown-deep);
+  border-bottom-color: var(--clr-parchment-dark);
+}
+
+.tab-btn.active {
+  color: var(--clr-crimson);
+  border-bottom-color: var(--clr-crimson);
+  background: rgba(122,21,21,0.04);
+}
+
+.tab-panels { perspective: 800px; }
+
+/* ─── Вертикальный таймлайн событий ─────────────────────────────────────── */
+.events-timeline {
+  position: relative;
+  padding-left: 52px;
+}
+
+.events-timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--clr-gold), var(--clr-ochre), transparent);
+}
+
+.event-item {
+  position: relative;
+  margin-bottom: var(--sp-lg);
+}
+
+.event-item:last-child { margin-bottom: 0; }
+
+/* Иконка-маркер */
+.event-icon {
+  position: absolute;
+  left: -42px;
+  top: 2px;
+  width: 36px;
+  height: 36px;
+  background: var(--clr-parchment);
+  border: 2px solid var(--clr-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.event-item:hover .event-icon {
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(201,162,39,0.5);
+}
+
+/* Заголовок события */
+.event-header {
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-md);
+  padding: var(--sp-sm) var(--sp-md);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.event-header:hover { background: rgba(201,162,39,0.08); }
+
+.event-year {
+  font-family: var(--font-heading);
+  font-size: var(--fz-xs);
+  color: var(--clr-ochre);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+.event-title {
+  font-family: var(--font-heading);
+  font-size: var(--fz-sm);
+  color: var(--clr-brown-deep);
+  font-weight: 600;
+}
+
+.event-toggle {
+  margin-left: auto;
+  color: var(--clr-gold);
+  font-size: var(--fz-xs);
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.event-item.open .event-toggle { transform: rotate(180deg); }
+
+/* Раскрывающаяся деталь */
+.event-detail {
+  padding: 0 var(--sp-md);
+  font-size: var(--fz-sm);
+  color: var(--clr-brown);
+  line-height: 1.7;
+  border-left: 2px solid rgba(201,162,39,0.3);
+  margin-left: var(--sp-sm);
+}
+
+.event-detail.open {
+  padding: var(--sp-sm) var(--sp-md) var(--sp-md);
+}
+
+/* ─── Вклад — структурированный список ──────────────────────────────────── */
+.contributions-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.contribution-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-md);
+  padding: var(--sp-md);
+  background: rgba(201,162,39,0.06);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--clr-gold);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.contribution-item:hover {
+  background: rgba(201,162,39,0.12);
+  border-left-color: var(--clr-crimson);
+}
+
+.contribution-num {
+  font-family: var(--font-heading);
+  font-size: var(--fz-xs);
+  color: var(--clr-gold);
+  min-width: 1.6em;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.contribution-text {
+  font-size: var(--fz-sm);
+  color: var(--clr-brown);
+  line-height: 1.65;
+}
+
+/* ─── Квиз-компонент (мини и финал) ─────────────────────────────────────── */
+.quiz-container {
+  background: rgba(201,162,39,0.05);
+  border: 1px solid var(--clr-parchment-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-lg);
+}
+
+.quiz-question-wrap {
+  display: none;
+}
+
+.quiz-question-wrap.current { display: block; }
+
+.quiz-question-num {
+  font-family: var(--font-heading);
+  font-size: var(--fz-xs);
+  color: var(--clr-ochre);
+  letter-spacing: 0.15em;
+  margin-bottom: var(--sp-sm);
+}
+
+.quiz-question-text {
+  font-family: var(--font-heading);
+  font-size: var(--fz-base);
+  color: var(--clr-brown-deep);
+  margin-bottom: var(--sp-lg);
+  line-height: 1.4;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+
+.quiz-option {
+  font-family: var(--font-body);
+  font-size: var(--fz-sm);
+  color: var(--clr-brown-deep);
+  background: var(--clr-parchment);
+  border: 1px solid var(--clr-parchment-dark);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-md) var(--sp-lg);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-option::before {
+  content: attr(data-letter);
+  font-family: var(--font-heading);
+  font-size: var(--fz-xs);
+  color: var(--clr-ochre);
+  margin-right: var(--sp-md);
+  font-weight: 700;
+}
+
+.quiz-option:hover:not(:disabled) {
+  border-color: var(--clr-gold);
+  background: rgba(201,162,39,0.1);
+  transform: translateX(4px);
+}
+
+.quiz-option:disabled { cursor: not-allowed; opacity: 0.75; }
+
+.quiz-option.correct-answer {
+  border-color: #2d7a3a;
+  background: rgba(45,122,58,0.12);
+  color: #1a4d22;
+}
+
+.quiz-option.wrong-answer {
+  border-color: var(--clr-crimson);
+  background: rgba(122,21,21,0.1);
+}
+
+.quiz-explanation {
+  margin-top: var(--sp-md);
+  padding: var(--sp-md);
+  background: rgba(201,162,39,0.12);
+  border-radius: var(--radius-sm);
+  font-size: var(--fz-sm);
+  color: var(--clr-brown);
+  font-style: italic;
+  border-left: 3px solid var(--clr-gold);
+  display: none;
+}
+
+.quiz-explanation.visible { display: block; }
+
+.quiz-next-btn {
+  margin-top: var(--sp-lg);
+  padding: var(--sp-sm) var(--sp-xl);
+  font-family: var(--font-heading);
+  font-size: var(--fz-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-parchment);
+  background: var(--clr-crimson);
+  border: 1px solid var(--clr-crimson);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: none;
+}
+
+.quiz-next-btn:hover {
+  background: var(--clr-crimson-light);
+  box-shadow: 0 4px 16px rgba(122,21,21,0.35);
+}
+
+.quiz-next-btn.visible { display: inline-block; }
+
+/* Финальный диплом */
+.diploma-wrap {
+  max-width: 580px;
+  margin: var(--sp-lg) auto 0;
+  background: var(--clr-parchment);
+  border: 3px double var(--clr-gold);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-xl);
+  text-align: center;
+  position: relative;
+  box-shadow: var(--shadow-lg), inset 0 0 40px rgba(0,0,0,0.04);
+}
+
+.diploma-wrap::before,
+.diploma-wrap::after {
+  content: '❧';
+  position: absolute;
+  font-size: 2rem;
+  color: var(--clr-gold);
+  opacity: 0.5;
+}
+
+.diploma-wrap::before { top: 12px; left: 20px; }
+.diploma-wrap::after  { bottom: 12px; right: 20px; transform: scaleX(-1); }
+
+.diploma-rank {
+  font-family: var(--font-heading);
+  font-size: var(--fz-2xl);
+  color: var(--clr-crimson);
+  letter-spacing: 0.06em;
+  margin-bottom: var(--sp-sm);
+}
+
+.diploma-score {
+  font-family: var(--font-heading);
+  font-size: var(--fz-xl);
+  color: var(--clr-gold);
+  margin-bottom: var(--sp-md);
+}
+
+.diploma-text {
+  font-style: italic;
+  color: var(--clr-brown);
+  font-size: var(--fz-base);
+  margin-bottom: var(--sp-lg);
+}
+
+.diploma-seal {
+  margin: var(--sp-md) auto 0;
+}
+
+.quiz-restart-btn {
+  display: inline-block;
+  margin-top: var(--sp-lg);
+  padding: var(--sp-sm) var(--sp-xl);
+  font-family: var(--font-heading);
+  font-size: var(--fz-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-brown-deep);
+  background: var(--clr-gold);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--clr-ochre);
+}
+
+.quiz-restart-btn:hover {
+  background: var(--clr-gold-light);
+  box-shadow: 0 4px 16px rgba(201,162,39,0.4);
+}
+
+/* ─── Карта — тултип (position:fixed — работает везде) ─────────────────── */
+.map-tooltip {
+  position: fixed;
+  background: rgba(20, 10, 4, 0.96);
+  border: 1px solid var(--clr-gold);
+  border-radius: var(--radius-md);
+  padding: var(--sp-sm) var(--sp-md);
+  pointer-events: none;
+  z-index: var(--z-tooltip);
+  max-width: 260px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+  box-shadow: var(--shadow-md);
+}
+
+.map-tooltip.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.map-tooltip-place {
+  font-family: var(--font-heading);
+  font-size: var(--fz-xs);
+  color: var(--clr-gold);
+  letter-spacing: 0.12em;
+  margin-bottom: var(--sp-xs);
+}
+
+.map-tooltip-event {
+  font-size: var(--fz-xs);
+  color: var(--clr-parchment-mid);
+  line-height: 1.55;
+}
+
+/* ─── Секция-свиток — декоративные края ─────────────────────────────────── */
+.scroll-edge {
+  height: 32px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 32' preserveAspectRatio='none'%3E%3Cpath d='M0,16 Q150,0 300,16 Q450,32 600,16 Q750,0 900,16 Q1050,32 1200,16 L1200,32 L0,32 Z' fill='%23f5e9c8'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+  margin-top: -1px;
+}
+
+.scroll-edge.edge-top {
+  transform: scaleY(-1);
+  margin-top: 0;
+  margin-bottom: -1px;
+}
+
+/* ─── Radar-легенда ──────────────────────────────────────────────────────── */
+.radar-legend {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-xl);
+  flex-wrap: wrap;
+  margin-top: var(--sp-md);
+}
+
+.radar-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  font-size: var(--fz-sm);
+  color: var(--clr-brown);
+}
+
+.radar-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── Кнопка «запустить квиз» ────────────────────────────────────────────── */
+.quiz-start-btn {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: var(--sp-lg) auto 0;
+  padding: var(--sp-md) var(--sp-xl);
+  font-family: var(--font-heading);
+  font-size: var(--fz-sm);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-parchment);
+  background: var(--clr-crimson);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.quiz-start-btn:hover {
+  background: var(--clr-crimson-light);
+  box-shadow: 0 4px 20px rgba(122,21,21,0.4);
+  transform: translateY(-2px);
+}
+
+/* ─── Биография ─────────────────────────────────────────────────────────── */
+.bio-text {
+  font-size: var(--fz-base);
+  line-height: 1.85;
+  color: var(--clr-brown);
+}
+
+.bio-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-sm) var(--sp-md);
+  margin-bottom: var(--sp-lg);
+  padding: var(--sp-md);
+  background: rgba(201,162,39,0.06);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(201,162,39,0.2);
+}
+
+.bio-meta-item {}
+
+.bio-meta-label {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-ochre);
+  display: block;
+}
+
+.bio-meta-value {
+  font-size: var(--fz-sm);
+  color: var(--clr-brown);
+}
